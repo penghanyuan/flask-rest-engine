@@ -1,0 +1,65 @@
+import os
+import sys
+
+import importlib
+import inspect
+from marshmallow import Schema
+from flask_sqlalchemy import model
+from typing import List
+
+def import_subs(locals_, modules_only: bool = False) -> List[str]:
+    """ Auto import submodules, used in __init__.py.
+    Args:
+        locals_: `locals()`.
+        modules_only: Only collect modules to __all__.
+    Examples::
+        # app/models/__init__.py
+        from hobbit_core.utils import import_subs
+        __all__ = import_subs(locals())
+    Auto collect Model's subclass, Schema's subclass and instance.
+    Others objects must defined in submodule.__all__.
+    """
+    package = locals_['__package__']
+    path = locals_['__path__']
+    top_mudule = sys.modules[package]
+
+    all_ = []
+    for name in os.listdir(path[0]):
+        if not name.endswith(('.py', '.pyc')) or name.startswith('__init__.'):
+            continue
+
+        module_name = name.split('.')[0]
+        submodule = importlib.import_module(f".{module_name}", package)
+        all_.append(module_name)
+
+        if modules_only:
+            continue
+
+        if hasattr(submodule, '__all__'):
+            for name in getattr(submodule, '__all__'):
+                if not isinstance(name, str):
+                    raise Exception(f'Invalid object {name} in __all__, '
+                                    f'must contain only strings.')
+                setattr(top_mudule, name, getattr(submodule, name))
+                all_.append(name)
+        else:
+            for name, obj in submodule.__dict__.items():
+                if isinstance(obj, (model.DefaultMeta, Schema)) or \
+                        (inspect.isclass(obj) and
+                         (issubclass(obj, Schema) or
+                          obj.__name__.endswith('Service'))):
+                    setattr(top_mudule, name, obj)
+                    all_.append(name)
+    return all_
+
+
+def register_resource(resource_cls):
+    resource_mod = resource_cls.__module__
+    get_url = getattr(resource_cls, "url", None)
+    if get_url is None:
+        raise AttributeError("Please set `url` for `api.Resource`")
+    else:
+        if not isinstance(get_url, list):
+            raise AttributeError("Type of `url` for `api.Resource` must be list, %s found." % type(get_url))
+    setattr(importlib.import_module(resource_mod), "resource_name", resource_cls.__name__)
+    return resource_cls

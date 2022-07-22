@@ -1,0 +1,72 @@
+import importlib
+import logging
+
+from flask import Flask, request
+from flask.helpers import get_env
+
+from app.exts import db, migrate, ma, api {% if celery %}, celery{% endif %}
+
+
+def register_extensions(app):
+    db.init_app(app)
+    migrate.init_app(app, db)
+    ma.init_app(app)
+    api.init_app(app)
+
+
+def register_apis():
+    from app import endpoints
+    for name in endpoints.__all__:
+        resource_name = getattr(importlib.import_module(f'app.endpoints.{name}'), 'resource_name', None)
+        if resource_name is not None:
+            api_resource = getattr(importlib.import_module(f'app.endpoints.{name}'), resource_name, None)
+            if not getattr(api_resource, 'url', None):
+                raise AttributeError("Please set `url` for `api.Resource`")
+            api.add_resource(
+                api_resource, *api_resource.url)
+
+
+def register_cmds(app):
+    pass
+
+
+{% if celery -%}
+def make_celery(app):
+    celery.conf.update(app.config)
+
+    class ContextTask(celery.Task):
+        def __call__(self, *args, **kwargs):
+            with app.app_context():
+                return self.run(*args, **kwargs)
+
+    celery.Task = ContextTask
+    from app import tasks  # NOQA
+    return celery
+
+
+{% endif -%}
+def create_app():
+    app = Flask(__name__, instance_relative_config=True)
+    app.config.from_object('app.configs.{}'.format(get_env()))
+
+    with app.app_context():
+        register_apis()
+        register_extensions(app)
+        register_cmds(app)
+        {%- if celery %}
+        make_celery(app)
+        {%- endif %}
+        db.create_all()
+
+    @app.before_request
+    def log_request_info():
+        # Log put/post requests to the log file for debuging
+        logger = logging.getLogger()
+        if request.method in ['POST', 'PUT']:
+            logger.debug('PUT/POST Body: %s', request.json)
+
+    return app
+
+
+app = create_app()
+
