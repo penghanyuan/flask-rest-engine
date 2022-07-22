@@ -7,6 +7,7 @@ from marshmallow import Schema
 from flask_sqlalchemy import model
 from typing import List
 
+
 def import_subs(locals_, modules_only: bool = False) -> List[str]:
     """ Auto import submodules, used in __init__.py.
     Args:
@@ -60,6 +61,8 @@ def register_resource(resource_cls):
         raise AttributeError("Please set `url` for `api.Resource`")
     else:
         if not isinstance(get_url, list):
-            raise AttributeError("Type of `url` for `api.Resource` must be list, %s found." % type(get_url))
-    setattr(importlib.import_module(resource_mod), "resource_name", resource_cls.__name__)
+            raise AttributeError(
+                "Type of `url` for `api.Resource` must be list, %s found." % type(get_url))
+    setattr(importlib.import_module(resource_mod),
+            "resource_name", resource_cls.__name__)
     return resource_cls

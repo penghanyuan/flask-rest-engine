@@ -8,6 +8,15 @@ tox = "*"
 ipython = "*"
 flask-rest-engine = {editable = true,path = "."}
 pytest = "*"
+flask = "*"
+flask-restful = "*"
+markupsafe = "*"
+gunicorn = "*"
+decorator = "*"
+flask-sqlalchemy = "*"
+flask-migrate = "*"
+flask-marshmallow = "*"
+marshmallow-sqlalchemy = "*"
 
 [dev-packages]
 sphinx-autobuild = "*"
@@ -22,6 +31,7 @@ mypy-extensions = "*"
 Sphinx = "*"
 Flask-Sphinx-Themes = "*"
 cryptography = "*"
+click = "*"
 
 [requires]
 python_version = "3.9"

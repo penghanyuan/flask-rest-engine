@@ -1,30 +1,29 @@
-# Hobbit-core
+# Flask-rest-engine
 
-[![CircleCI](https://circleci.com/gh/TTWShell/hobbit-core.svg?style=svg)](https://circleci.com/gh/TTWShell/hobbit-core)
-[![Documentation Status](https://readthedocs.org/projects/hobbit-core/badge/?version=latest)](https://hobbit-core.readthedocs.io/zh/latest/?badge=latest)
-[![PyPi-Version](https://img.shields.io/pypi/v/hobbit-core.svg)](https://img.shields.io/pypi/v/hobbit-core.svg)
-[![Python-version](https://img.shields.io/pypi/pyversions/hobbit-core.svg)](https://img.shields.io/pypi/pyversions/hobbit-core.svg)
-[![codecov](https://codecov.io/gh/TTWShell/hobbit-core/branch/master/graph/badge.svg)](https://codecov.io/gh/TTWShell/hobbit-core)
-[![License](https://img.shields.io/:license-mit-blue.svg?style=flat-square)](https://hobbit-core.mit-license.org)
+<!-- [![CircleCI](https://circleci.com/gh/TTWShell/Flask-rest-engine.svg?style=svg)](https://circleci.com/gh/TTWShell/Flask-rest-engine)
+[![Documentation Status](https://readthedocs.org/projects/Flask-rest-engine/badge/?version=latest)](https://Flask-rest-engine.readthedocs.io/zh/latest/?badge=latest)
+[![PyPi-Version](https://img.shields.io/pypi/v/Flask-rest-engine.svg)](https://img.shields.io/pypi/v/Flask-rest-engine.svg)
+[![Python-version](https://img.shields.io/pypi/pyversions/Flask-rest-engine.svg)](https://img.shields.io/pypi/pyversions/Flask-rest-engine.svg)
+[![codecov](https://codecov.io/gh/TTWShell/Flask-rest-engine/branch/master/graph/badge.svg)](https://codecov.io/gh/TTWShell/Flask-rest-engine)
+[![License](https://img.shields.io/:license-mit-blue.svg?style=flat-square)](https://Flask-rest-engine.mit-license.org) -->
 
-A flask project generator. Based on Flask + SQLAlchemy + marshmallow + webargs.
+A flask-restful API project generator. Based on Flask-restful + SQLAlchemy + marshmallow + webargs.
 
-[https://hobbit-core.readthedocs.io/zh/latest/](https://hobbit-core.readthedocs.io/zh/latest/)
+This project was inspired by [Hobbit-core](https://github.com/TTWShell/hobbit-core), thanks to [@TTWShell](https://github.com/TTWShell)
 
 # Installation
 
 Install and update using pip(**Still using Python 2? It is time to upgrade.**):
 
-    pip install -U "hobbit-core[hobbit]"  # just install hobbit cmd
-    pip install -U "hobbit-core[hobbit,hobbit_core]"  # recommended when use virtualenv
+    pip install flask-rest-engine  # install cmd
 
 # A Simple Example
 
 ## Init project:
 
-    hobbit --echo new -n demo -d /tmp/demo -p 5000 -t rivendell
+    flask_rest_engine --echo new -n demo -d /tmp/demo -p 5000
     cd /tmp/demo
-    pipenv install -r requirements.txt --pre && pipenv install --dev pytest pytest-cov pytest-env ipython flake8 ipdb
+    pipenv install -r requirements.txt && pipenv install --dev pytest pytest-cov pytest-env ipython flake8 ipdb
     pipenv shell
 
 ## Run server:
@@ -84,4 +83,4 @@ Install and update using pip(**Still using Python 2? It is time to upgrade.**):
 
 # Others
 
-    hobbit --help
+    flask_rest_engine --help

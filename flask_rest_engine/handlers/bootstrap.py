@@ -73,7 +73,7 @@ def render_file(ctx, dist, fn, data):
 
 
 def validate_template_path(ctx, param, value):
-    from hobbit import ROOT_PATH
+    from flask_rest_engine import ROOT_PATH
     dir = 'feature' if ctx.command.name == 'gen' else 'bootstrap'
     tpl_path = os.path.join(ROOT_PATH, 'static', dir, value)
 

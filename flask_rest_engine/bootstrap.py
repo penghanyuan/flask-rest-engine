@@ -58,7 +58,7 @@ def new(ctx, name, port, dist, template, force, celery):
         'port': port,
         'secret_key': ''.join(random.choice(
             string.ascii_letters) for i in range(38)),
-        'version': pkg_resources.get_distribution("hobbit-core").version,
+        'version': pkg_resources.get_distribution("flask_rest_engine").version,
         'celery': celery,
     }
 

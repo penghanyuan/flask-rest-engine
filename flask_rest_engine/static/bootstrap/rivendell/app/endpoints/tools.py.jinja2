@@ -4,9 +4,12 @@ from flask_restful import Resource
 from app import register_resource
 
 logger = logging.getLogger()
+
+
 @register_resource
 class HelloWorld(Resource):
     url = ["/hello_world"]
+
     def get(self):
         logger.debug("hello world!")
         return jsonify({'ping': 'ok'})
