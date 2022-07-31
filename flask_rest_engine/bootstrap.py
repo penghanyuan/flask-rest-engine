@@ -9,7 +9,7 @@ from .handlers import echo
 from .handlers.bootstrap import render_project, validate_template_path
 from . import HobbitCommand, HobbitGroup, CONTEXT_SETTINGS
 
-templates = ['shire', 'rivendell']
+templates = ['rivendell']
 
 
 @click.group(cls=HobbitGroup, context_settings=CONTEXT_SETTINGS)

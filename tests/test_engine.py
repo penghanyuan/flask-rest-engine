@@ -56,7 +56,7 @@ class TestEngine(BaseTest):
             # start + files + mkdir + tail
             'shire | --celery': 1 + 28 + 12 + 1,
             'rivendell | --no-celery':  1 + 30 + 11 + 1,
-            'rivendell | --celery':  1 + 31 + 12 + 1,
+            'rivendell | --celery':  1 + 31 + 12 + 1, 
         }
         assert len(result.output.split('\n')) == file_nums[
             f'{template} | {celery_}']
