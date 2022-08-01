@@ -37,7 +37,7 @@ setup(
     long_description_content_type=long_description_content_type,
     author='Hyria PENG',
     author_email='penghanyuan@gmail.com',
-    url='www.google.com',
+    url='https://github.com/penghanyuan/flask-rest-engine',
     classifiers=[
         'Topic :: Utilities',
         'Programming Language :: Python :: 3.6',
