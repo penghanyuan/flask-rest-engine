@@ -87,7 +87,7 @@ app.run.py
 
 #### app.configs
 
-In a hobbit app, we auto load config by FLASK_ENV. If FLASK_ENV=production, used ``configs/production.py`` file.
+In a flask app, we auto load config by FLASK_ENV. If FLASK_ENV=production, used ``configs/production.py`` file.
 
 #### app.core
 
