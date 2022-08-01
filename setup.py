@@ -30,7 +30,7 @@ except(OSError, ImportError):
 
 setup(
     name='flask-rest-engine',
-    version='1.0.0',
+    version='1.0.3',
     python_requires='>=3.6, <4',
     description='Flask-rest-engine - A flask restful API project generator.',
     long_description=long_description,
