@@ -7,7 +7,7 @@
 [![codecov](https://codecov.io/gh/TTWShell/Flask-rest-engine/branch/master/graph/badge.svg)](https://codecov.io/gh/TTWShell/Flask-rest-engine)
 [![License](https://img.shields.io/:license-mit-blue.svg?style=flat-square)](https://Flask-rest-engine.mit-license.org) -->
 
-A flask-restful API project generator. Based on Flask-restful + SQLAlchemy + marshmallow + webargs.
+A flask-restful API project template generator. Based on Flask-restful + SQLAlchemy + marshmallow + webargs.
 
 This project was inspired by [Hobbit-core](https://github.com/TTWShell/hobbit-core), thanks to [@TTWShell](https://github.com/TTWShell)
 
