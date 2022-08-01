@@ -11,7 +11,7 @@ A flask-restful API project generator. Based on Flask-restful + SQLAlchemy + mar
 
 This project was inspired by [Hobbit-core](https://github.com/TTWShell/hobbit-core), thanks to [@TTWShell](https://github.com/TTWShell)
 
-# Installation
+<!-- # Installation
 
 Install and update using pip(**Still using Python 2? It is time to upgrade.**):
 
@@ -83,4 +83,4 @@ Install and update using pip(**Still using Python 2? It is time to upgrade.**):
 
 # Others
 
-    flask_rest_engine --help
+    flask_rest_engine --help -->
