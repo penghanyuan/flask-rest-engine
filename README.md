@@ -111,7 +111,7 @@ All common utils here.
 
 #### app.endpoints
 
-Create your views here.
+Create your endpoints here.
 
 ### deploy.sh
 
